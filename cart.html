@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        #container {
+            width: 90%;
+            margin: auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        #container img {
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="navbar">
+        <div class="option">
+            <a href="./index.html">Home</a>
+            <a href="./cart.html">Cart</a>
+        </div>
+    </div>
+
+    <div id="container"></div>
+
+
+    <script>
+        let container = document.querySelector("#container");
+
+        let LS = localStorage.getItem("cart");
+
+        if (LS == null) {
+            LS = [];
+        }
+        else {
+            LS = JSON.parse(LS)
+        }
+
+        function display(data) {
+
+            container.innerHTML = "";
+
+
+            for (let i = 0; i < data.length; i++) {
+
+                console.log(data[i]);
+                let product = document.createElement("div");
+
+                let image = document.createElement("img");
+                image.setAttribute("src", data[i].img);
+
+                let name = document.createElement("p");
+                name.innerText = data[i].name;
+
+                let price = document.createElement("p");
+                price.innerText = data[i].price;
+
+                if (data[i].price >= 500) {
+                    price.style.color = "red"
+                }
+
+                let brand = document.createElement("p");
+                brand.innerText = data[i].brand;
+
+                let catagory = document.createElement("p");
+                catagory.innerText = data[i].catagory;
+
+                let deleteBtn = document.createElement("button");
+                deleteBtn.innerText = "Delete";
+
+                deleteBtn.addEventListener("click", function () {
+
+                    LS = LS.filter(function(element,index){
+                        if(i !== index){
+                            return element;
+
+                        }
+                    })
+ 
+                   
+                    localStorage.setItem("cart", JSON.stringify(LS));
+                    display(LS)
+
+                })
+
+
+                product.append(image, name, price, brand, catagory, deleteBtn);
+
+                container.append(product);
+            }
+
+        }
+
+        display(LS)
+
+
+    </script>
+
+</body>
+
+</html>

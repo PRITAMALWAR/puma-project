@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Puma.com</title>
+
+    <style>
+        #container {
+            width: 90%;
+            margin: auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        #container img {
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="navbar">
+        <div class="option">
+            <a href="./index.html">Home</a>
+            <a href="./cart.html">Cart</a>
+        </div>
+    </div>
+
+    <select id="filter">
+        <option value="">Select_Brand</option>
+        <option value="puma">PUMA</option>
+        <option value="nike">NIKE</option>
+    </select>
+
+
+    <div id="container"></div>
+
+
+
+    <script src="home.js"></script>
+</body>
+
+</html>
